@@ -10,16 +10,25 @@ gem 'pg'
 # in production environments by default.
 group :assets do
   gem 'sprockets-rails', github: 'rails/sprockets-rails'
-  gem 'sass-rails',   github: 'rails/sass-rails'
+  # gem 'sass-rails',   github: 'rails/sass-rails'
   gem 'coffee-rails', github: 'rails/coffee-rails'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', platforms: :ruby
 
+  gem 'less-rails', github: 'metaskills/less-rails'
+  gem 'therubyracer'
+  gem 'twitter-bootstrap-rails'
+
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'haml-rails'
+
+gem 'angularjs-rails'
 gem 'jquery-rails'
+
+gem 'paperclip'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
@@ -38,3 +47,10 @@ gem 'jbuilder', '~> 1.0.1'
 
 # To use debugger
 # gem 'debugger'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'shoulda'
+  gem 'capybara'
+end

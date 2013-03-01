@@ -28,4 +28,5 @@ PictPick::Application.configure do
 
   # Debug mode disables concatenation and preprocessing of assets.
   config.assets.debug = true
+  config.assets.enabled = true
 end
