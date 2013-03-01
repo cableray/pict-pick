@@ -14,9 +14,6 @@
     = f.text_area :description
   .field
     = f.label :image
-    = f.text_field :image
-  .field
-    = f.label :ratings
-    = f.text_field :ratings
+    = f.file_field :image
   .actions
     = f.submit 'Save'

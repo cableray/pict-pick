@@ -1,16 +1,14 @@
+%h1= @image.title
+
 %p#notice= notice
 
 %p
-  %b Title:
-  = @image.title
-%p
   %b Description:
-  = @image.description
-%p
-  %b Image:
-  = @image.image
-%p
-  %b Ratings:
+  %blockquote= @image.description
+%div
+  = image_tag @image.image.url
+%div
+  %b Rating:
   = @image.ratings
 
 = link_to 'Edit', edit_image_path(@image)

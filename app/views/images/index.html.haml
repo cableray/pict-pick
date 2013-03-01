@@ -1,24 +1,15 @@
-%h1 Listing images
+%h1 All Images
 
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Image
-    %th Ratings
-    %th
-    %th
-    %th
-
-  - @images.each do |image|
-    %tr
-      %td= image.title
-      %td= image.description
-      %td= image.image
-      %td= image.ratings
-      %td= link_to 'Show', image
-      %td= link_to 'Edit', edit_image_path(image)
-      %td= link_to 'Destroy', image, :method => :delete, :data => { :confirm => 'Are you sure?' }
+- @images.each do |image|
+  .row-fluid
+    %h1= image.title
+    %div= image_tag image.image.url
+    %td= "rating: #{image.ratings}"
+    %p= image.description
+    .btn-group
+      %button.btn= link_to 'Show', image
+      %button.btn= link_to 'Edit', edit_image_path(image)
+      %button.btn= link_to 'Destroy', image, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
