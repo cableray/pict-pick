@@ -3,8 +3,8 @@
 - @images.each do |image|
   .row-fluid
     %h1= image.title
-    %div= image_tag image.image.url
-    %td= "rating: #{image.ratings}"
+    %div= image_tag image.image.url, class: 'img-polaroid'
+    %td= "rating: #{image.rating}"
     %p= image.description
     .btn-group
       %button.btn= link_to 'Show', image

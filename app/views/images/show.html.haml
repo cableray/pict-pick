@@ -6,10 +6,10 @@
   %b Description:
   %blockquote= @image.description
 %div
-  = image_tag @image.image.url
+  = image_tag @image.image.url, class: 'img-polaroid'
 %div
   %b Rating:
-  = @image.ratings
+  = @image.rating
 
 = link_to 'Edit', edit_image_path(@image)
 \|
