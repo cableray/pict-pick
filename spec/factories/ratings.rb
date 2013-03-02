@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :rating do
-    value "9.99"
-    image nil
+    value {rand (0..10)}
+    image
   end
 end
