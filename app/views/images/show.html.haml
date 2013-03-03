@@ -1,0 +1,16 @@
+%h1= @image.title
+
+%p#notice= notice
+
+%p
+  %b Description:
+  %blockquote= @image.description
+%div
+  = image_tag @image.image.url, class: 'img-polaroid'
+%div
+  %b Rating:
+  = @image.rating
+
+= link_to 'Edit', edit_image_path(@image)
+\|
+= link_to 'Back', images_path

@@ -1,28 +1,21 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Rails 4 App designed to rate images and submit images for rating. Eventually images will be able to be rated based on any quality specified by the user (i.e. dimensions such as Overall Quality, Composition, Color, Uniqueness, or anything else the user wants feedback on).
 
-Things you may want to cover:
+=== Todo
 
-* Ruby version
+* Clean up design (pretty much fix whitespace so it's more pleasing)
 
-* System dependencies
+* Add authentication
 
-* Configuration
+* Add authorization (users should only be able to edit details for their images, possibly add privacy options, don't always show rating if user wants to hide it)
 
-* Database creation
+* Add rating dimensions
 
-* Database initialization
+* Add direct comparison ratings (i.e. is this photo beter than this other one?)
 
-* How to run the test suite
+* Add voting incentives (in order to increase user participation, perhaps give points for voting, and spend those points in order to submit a photo to be rated)
 
-* Services (job queues, cache servers, search engines, etc.)
+* Add user demographics
 
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Improve README ;)
