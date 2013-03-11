@@ -5,11 +5,12 @@
     %h1= image.title
     %div= image_tag image.image.url, class: 'img-polaroid center'
     %div
-      = "rating: #{image.rating}"
-      %rating{:'current-rating' => image.rating.to_s }
-      =form_for [image, image.ratings.build] do |f|
-        =f.select(:value, (0..10))
-        =f.submit 'Rate'
+      %noscript= "rating: #{image.rating}"
+      %rating{:'current-rating' => image.rating.to_s, :action => image_ratings_path(image), :'vote-count' => image.ratings.count.to_s }
+      %noscript
+        =form_for [image, image.ratings.build] do |f|
+          =f.select(:value, (0..10))
+          =f.submit 'Rate'
     %p= image.description
     .btn-group
       %button.btn= link_to 'Show', image
