@@ -10,50 +10,64 @@
     scope:
       currentRating:'@'
       maxRating:'@'
+      voteCount:'@'
       action:'@'
       method:'@'
     restrict: 'E'
     template: """
-    <div class="progress progress-success center" style="width:200px;">
-      <div class="bar" style="width:{{percent}}%"></div>
-    </div><div>{{percent}}%</div>
-    """,
+    <div class="rating-stats">
+      Average&nbsp;Rating: {{rating.currentRating()}}
+      <span ng-show="voteCount"> | Number&nbsp;of&nbsp;Votes:{{voteCount}}</span>
+      <span ng-show="rating.pendingRating"> | My&nbsp;Rating:{{rating.pendingRating}}</span>
+    </div>
+    <div class="progress progress-success">
+      <div class="bar" style="width:{{rating.displayPercent()}}%"></div>
+    </div><div>{{rating.displayRating()}} ({{rating.displayPercent()}}%)</div>
+    """
     controller: ($scope,$attrs)->
-      displayPercent: ->
-        if $scope.mouseIn
-          @mousePercent()
-        else
-          @currentRatingPercent()
-      currentRatingPercent: ->
-        $attrs.currentRating/$attrs.maxRating *100
-      mousePercent: ->
-        $scope.mouseRating/$attrs.maxRating *100 || @currentRatingPercent
-      mouseRating: (offset,width)->
-        Math.round offset/width * $attrs.maxRating
+      $scope.rating=
+        displayPercent: ->
+          if $scope.mouseIn
+            @mousePercent()
+          else
+            @pendingRatingPercent() || @currentRatingPercent()
+        displayRating: ->
+          if $scope.mouseIn
+            @mouseRating
+          else
+            @currentRating()
+        currentRatingPercent: ->
+          @currentRating()/$attrs.maxRating *100
+        currentRating: ->
+          $attrs.currentRating
+        setCurrentRating: (value)->
+          $attrs.currentRating= value
+        mousePercent: ->
+          @mouseRating/$attrs.maxRating *100 || @currentRatingPercent
+        setMouseRating: (offset,width)->
+          @mouseRating= Math.round offset/width * $attrs.maxRating
+        pendingRatingPercent: ->
+          @pendingRating/$attrs.maxRating *100
 
     link: (scope, element, attrs, controller)->
       well = element.find '.progress' #requires jquery to use this selector.
       bar = well.find '.bar'
       attrs.maxRating ||= 10
-      scope.ratingPercent= controller.currentRatingPercent
       scope.mouseIn= false
-      scope.percent= controller.displayPercent()
       well.bind 'mouseenter', (event)->
         well.removeClass 'progress-success'
         scope.mouseIn= true
-        scope.mouseRating= controller.mouseRating(event.offsetX,well.width())
-        scope.percent= controller.displayPercent()
+        scope.rating.setMouseRating(event.offsetX,well.width())
         scope.$apply()
       well.bind 'mouseleave', (event)->
         scope.mouseIn= false
-        scope.percent= controller.displayPercent()
         well.addClass 'progress-success'
         scope.$apply()
       well.bind 'mousemove', (event)->
-        scope.mouseRating= controller.mouseRating(event.offsetX,well.width())
-        scope.percent= controller.displayPercent()
+        scope.rating.setMouseRating(event.offsetX,well.width())
         scope.$apply()
       well.bind 'click', (event)->
-        attrs.currentRating= controller.mouseRating(event.offsetX,well.width())
+        scope.rating.pendingRating= scope.rating.setMouseRating(event.offsetX,well.width())
+        well.addClass 'progress-striped'
         scope.$apply()
   }
