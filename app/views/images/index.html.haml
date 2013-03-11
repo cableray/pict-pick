@@ -1,11 +1,12 @@
 %h1 All Images
 
 - @images.each do |image|
-  .row-fluid
+  .row-fluid.image-listing
     %h1= image.title
-    %div= image_tag image.image.url, class: 'img-polaroid'
+    %div= image_tag image.image.url, class: 'img-polaroid center'
     %div
       = "rating: #{image.rating}"
+      %rating{:'current-rating' => image.rating.to_s }
       =form_for [image, image.ratings.build] do |f|
         =f.select(:value, (0..10))
         =f.submit 'Rate'
@@ -14,6 +15,7 @@
       %button.btn= link_to 'Show', image
       %button.btn= link_to 'Edit', edit_image_path(image)
       %button.btn= link_to 'Destroy', image, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %hr
 
 %br
 
