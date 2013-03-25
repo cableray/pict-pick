@@ -14,5 +14,6 @@
 //= require jquery_ujs
 //= require twitter/bootstrap
 //= require angular
+//= require ng-rails-csrf
 //= require turbolinks
 //= require_tree .

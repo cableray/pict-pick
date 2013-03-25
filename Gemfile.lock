@@ -77,6 +77,12 @@ GIT
       activesupport (>= 3.0)
       sprockets (~> 2.8)
 
+GIT
+  remote: git://github.com/xrd/ng-rails-csrf.git
+  revision: 171e853b3cf793d96659f4157a50602ab57e85f8
+  specs:
+    ng-rails-csrf (0.0.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -224,6 +230,7 @@ DEPENDENCIES
   jbuilder (~> 1.0.1)
   jquery-rails
   less-rails!
+  ng-rails-csrf!
   paperclip
   pg
   rails!
