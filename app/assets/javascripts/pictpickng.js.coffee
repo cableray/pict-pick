@@ -1,9 +1,6 @@
-# Place all the behaviors and hooks related to the matching controller here.
 # All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
 
-
-@app = angular.module('pictpick',[])
+@app = angular.module('pictpick',['ng-rails-csrf'])
 
 @app.directive 'rating', ()->
   {
@@ -11,18 +8,19 @@
       currentRating:'@'
       maxRating:'@'
       voteCount:'@'
+      showStats:'@'
       action:'@'
       method:'@'
     restrict: 'E'
     template: """
-    <div class="rating-stats">
+    <div ng-show="showStats" class="rating-stats">
       Average&nbsp;Rating: {{rating.currentRating() | number:2}}
       <span ng-show="rating.voteCount()"> | Number&nbsp;of&nbsp;Votes: {{rating.voteCount() | number}}</span>
       <span ng-show="rating.pendingRating"> | My&nbsp;Rating: {{rating.pendingRating | number:2}}</span>
     </div>
     <div class="progress" ng-class="classes()" style="cursor:pointer;">
-      <div class="bar" style="width:{{rating.displayPercent()}}%"></div>
-    </div><div>{{rating.displayRating() | number}} ({{rating.displayPercent() | number}}%)</div>
+      <div class="bar" style="width:{{rating.displayPercent()}}%">{{rating.displayRating() | number}}/{{maxRating | number}}</div>
+    </div>
     """
     controller: ($scope,$attrs,$http)->
       # scope and model setup

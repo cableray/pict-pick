@@ -6,7 +6,7 @@
     %div= image_tag image.image.url, class: 'img-polaroid center'
     %div
       %noscript= "rating: #{image.rating}"
-      %rating{:'current-rating' => image.rating.to_s, :action => image_ratings_path(image), :'vote-count' => image.ratings.count.to_s }
+      %rating{:'current-rating' => image.rating.to_s, :action => image_ratings_path(image), :'vote-count' => image.ratings.count.to_s, :'show-stats' => '1' }
       %noscript
         =form_for [image, image.ratings.build] do |f|
           =f.select(:value, (0..10))
