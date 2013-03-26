@@ -1,10 +1,8 @@
 require 'spec_helper'
 
-describe Image do
+describe RatingPanel do
   describe "Factory" do
-    subject {create :image}
+    subject {create :rating_panel}
     it {should be_valid}
   end
-
-  
 end

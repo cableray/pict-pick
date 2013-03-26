@@ -1,6 +1,6 @@
 PictPick::Application.routes.draw do
   resources :images do
-    resources :ratings
+    resources :rating_panels
   end
 
   root to: 'images#index'

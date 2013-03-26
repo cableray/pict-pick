@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130301065025) do
+ActiveRecord::Schema.define(version: 20130325235330) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,13 +27,33 @@ ActiveRecord::Schema.define(version: 20130301065025) do
     t.datetime "updated_at"
   end
 
-  create_table "ratings", force: true do |t|
-    t.decimal  "value"
+  create_table "rating_panels", force: true do |t|
     t.integer  "image_id"
+    t.string   "name"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "ratings", ["image_id"], name: "index_ratings_on_image_id"
+  add_index "rating_panels", ["image_id"], name: "index_rating_panels_on_image_id"
+
+  create_table "ratings", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "rating_panel_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ratings", ["rating_panel_id"], name: "index_ratings_on_rating_panel_id"
+
+  create_table "votes", force: true do |t|
+    t.decimal  "value"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "rating_id"
+  end
+
+  add_index "votes", ["rating_id"], name: "index_votes_on_rating_id"
 
 end

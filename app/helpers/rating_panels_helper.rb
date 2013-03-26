@@ -1,0 +1,2 @@
+module RatingPanelsHelper
+end

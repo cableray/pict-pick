@@ -1,7 +1,7 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :rating do
+  factory :rating_panel do
     name "MyString"
     description "MyText"
   end

@@ -5,6 +5,7 @@
     %h1= image.title
     %div= image_tag image.image.url, class: 'img-polaroid center'
     %div
+    -#
       %noscript= "rating: #{image.rating}"
       %rating{:'current-rating' => image.rating.to_s, :action => image_ratings_path(image), :'vote-count' => image.ratings.count.to_s, :'show-stats' => '1' }
       %noscript
