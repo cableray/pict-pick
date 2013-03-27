@@ -1,0 +1,13 @@
+%h1
+  = "Rate image '#{@image.title}'"
+  %small= @rating_panel.name
+
+%div
+  = image_tag @image.image.url, class: 'img-polaroid'
+
+%p= @rating_panel.description
+
+-@rating_panel.ratings.each do |rating|
+  %h2=rating.name
+
+=link_to 'Edit', edit_image_rating_panel_path(@image,@rating_panel)

@@ -1,0 +1,22 @@
+=form_for [@image, @rating_panel] do |f|
+  - if @image.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@image.errors.count, "error")} prohibited this image from being saved:"
+      %ul
+        - @image.errors.full_messages.each do |msg|
+          %li= msg
+
+  =f.label :name
+  =f.text_field :name
+
+  =f.label :description
+  =f.text_area :description
+
+  %fieldset
+    %legend Ratings
+    = f.fields_for :ratings do |builder|
+      = render '/ratings/form', f: builder
+    =link_to_add_fields "Add Rating", f, :ratings
+
+  %hr
+  =f.submit

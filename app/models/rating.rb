@@ -1,6 +1,7 @@
 class Rating < ActiveRecord::Base
   belongs_to :rating_panel
   has_many :votes
+  validates_uniqueness_of :name, scope: :rating_panel_id
 
   def mean(refresh=false)
     if votes(refresh).count == 0 then
