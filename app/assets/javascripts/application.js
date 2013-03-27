@@ -15,5 +15,5 @@
 //= require twitter/bootstrap
 //= require angular
 //= require ng-rails-csrf
-//= require turbolinks
+// don't = require turbolinks
 //= require_tree .
