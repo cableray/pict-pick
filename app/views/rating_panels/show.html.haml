@@ -8,6 +8,6 @@
 %p= @rating_panel.description
 
 -@rating_panel.ratings.each do |rating|
-  %h2=rating.name
+  =render '/ratings/widget', rating: rating
 
 =link_to 'Edit', edit_image_rating_panel_path(@image,@rating_panel)

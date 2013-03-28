@@ -3,6 +3,10 @@ PictPick::Application.routes.draw do
     resources :rating_panels
   end
 
+  match 'rating/:rating_id' => 'ratings#create', as: 'submit_vote', via: :post
+
+  resources :ratings
+
   root to: 'images#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

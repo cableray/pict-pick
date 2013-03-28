@@ -61,7 +61,7 @@
 
       submit: ->
         $scope.submitting= true
-        $http.post($attrs.action, { value: $scope.rating.pendingRating }).success( (data)->
+        $http.post($attrs.action, {vote:{ value: $scope.rating.pendingRating }}).success( (data)->
             $scope.submitting= false
             $scope.error= false
             $scope.rating.setCurrentRating data.average_rating

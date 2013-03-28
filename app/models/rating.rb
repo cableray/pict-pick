@@ -19,4 +19,9 @@ class Rating < ActiveRecord::Base
   def vote_values(refresh=false)
     votes(refresh).map(&:value)
   end
+
+  def image
+    rating_panel.image
+  end
+
 end

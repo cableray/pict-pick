@@ -1,4 +1,5 @@
-json.extract! @rating, :value, :image_id
+json.extract! @vote, :value, :rating_id
 
-json.average_rating @image.rating
-json.rating_count @image.ratings.count
+json.image_id @rating.image.id
+json.average_rating @rating.mean
+json.rating_count @rating.votes.count

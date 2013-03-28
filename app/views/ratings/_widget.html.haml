@@ -1,0 +1,8 @@
+%div
+  %strong= rating.name
+  %noscript= "rating: #{rating.mean}"
+  %rating{:'current-rating' => rating.mean, :action => submit_vote_path(rating.id), :'vote-count' => rating.votes.count, :'show-stats' => '1' }
+  %noscript
+    =form_for :vote, url:submit_vote_path(rating.id), method: :post do |f|
+      =f.select(:value, (0..10))
+      =f.submit 'Rate'

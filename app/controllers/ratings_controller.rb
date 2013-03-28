@@ -1,13 +1,13 @@
 class RatingsController < ApplicationController
-  before_action :set_image
+  before_action :set_rating
 
   def create
-    @rating = @image.ratings.build(rating_params)
+    @vote = @rating.votes.build(vote_params)
 
     respond_to do |format|
-      if @rating.save
-        format.html { redirect_to @image, notice: 'Rating was successfully created.' }
-        format.json { render action: 'show', status: :created, location: image_rating_url(@image,@rating) }
+      if @vote.save
+        format.html { redirect_to :back, notice: 'Vote Submitted.' }
+        format.json { render action: 'show', status: :created, location: rating_url(@rating) }
       else
         format.html { render action: 'new' }
         format.json { render json: @rating.errors, status: :unprocessable_entity }
@@ -17,12 +17,12 @@ class RatingsController < ApplicationController
 
   protected
 
-  def set_image
-    @image = Image.find(params[:image_id])
+  def set_rating
+    @rating = Rating.find(params[:rating_id]||params[:id])
   end
 
-  def rating_params
-    params.require(:rating).permit(:value)
+  def vote_params
+    params.require(:vote).permit(:value)
   end
 
 end
