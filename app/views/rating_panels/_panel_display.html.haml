@@ -1,0 +1,9 @@
+- columns ||= 3
+- ratings ||= panel.ratings
+- span_width = "span#{(12/columns).to_i}"
+.row-fluid
+  .span12
+    -ratings.each_slice columns do |rating_row|
+      .row-fluid
+        -rating_row.each do |rating|
+          %div{:class=>span_width}= render 'ratings/widget', rating: rating

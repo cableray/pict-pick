@@ -1,12 +1,11 @@
-%h1.page-heading= "Rating Panels for #{@image.title}"
+%h1.page-header= "Rating Panels for '#{@image.title}'"
+.row-fluid
+  %aside.span4
+    =render 'images/show_aside'
+  %section.span8
+    - if @image.rating_panels.empty?
+      .alert no rating panels for this image
+    - else
+      .row-fluid= render 'panel_listing', panels: @image.rating_panels, columns: 2
 
-- if @image.rating_panels.empty?
-  .alert no rating panels for this image
-
-- @image.rating_panels.each do |panel|
-  .row-fluid.panel-listing
-    %h1= panel.name
-    %p= panel.description
-  %hr
-
-%button.btn= link_to "New Panel", new_image_rating_panel_path(@image)
+    %button.btn= link_to "New Panel", new_image_rating_panel_path(@image)

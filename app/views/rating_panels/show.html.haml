@@ -1,13 +1,16 @@
-%h1
+%h1.page-header
   = "Rate image '#{@image.title}'"
-  %small= @rating_panel.name
 
-%div
+%div.center.text-center
   = image_tag @image.image.url, class: 'img-polaroid'
+%h2
+  Rate
+  %small= @rating_panel.name
 
 %p= @rating_panel.description
 
--@rating_panel.ratings.each do |rating|
-  =render '/ratings/widget', rating: rating
+%hr
 
-=link_to 'Edit', edit_image_rating_panel_path(@image,@rating_panel)
+.row-fluid= render 'panel_display', ratings: @rating_panel.ratings
+
+=link_to 'Edit', edit_image_rating_panel_path(@image,@rating_panel), class: 'btn'

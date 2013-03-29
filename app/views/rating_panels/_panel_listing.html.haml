@@ -1,0 +1,15 @@
+- heading_tag||= :h2
+- show_controls||= true
+- columns||= 3
+.span12
+  - panels.each do |panel|
+    %section.row-fluid.panel-listing
+      = content_tag heading_tag, panel.name
+      %p= panel.description
+      = render 'panel_display', panel: panel, columns: columns
+      - if show_controls
+        %aside.row-fluid
+          .btn-group
+            = link_to 'Edit', edit_image_rating_panel_path(panel.image, panel), class: 'btn'
+            = link_to 'Show', image_rating_panel_path(panel.image, panel), class: 'btn'
+    %hr
