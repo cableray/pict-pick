@@ -55,6 +55,8 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'shoulda'
   gem 'capybara'
+  gem 'pry'
+  gem 'pry-debugger'
 end
 
 group :development do
