@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :vote do
-    value {rand (0..10)}
+    value {rand(11)}
     rating
   end
 end
