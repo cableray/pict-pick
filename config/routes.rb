@@ -1,4 +1,5 @@
 PictPick::Application.routes.draw do
+  devise_for :users
   resources :images do
     resources :rating_panels
   end
