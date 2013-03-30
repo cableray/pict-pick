@@ -13,6 +13,8 @@
   </nav>
 </div>
 <div class="container-fluid">
+  <%= content_tag(:div, alert, class:'alert alert-danger') if alert %>
+  <%= content_tag(:div, notice, class:'alert')             if notice %>
   <%= yield %>
 </div>
 
